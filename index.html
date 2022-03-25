@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="index_files/css.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple@3.3.1/dist/siimple.min.css">
+  <title>Xifres i Lletres</title>
+  <style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  </style>
+  <script>
+
+      var num_generats = 0;
+      var num_lletres = 0;
+      var llista_nums = [1,2,3,4,5,6,7,8,9,10,25,50,75,100];
+      var llista_vocals = ["a","e","i","o","u"];
+      var llista_consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+
+      function mostra_xifres(){
+
+        num_generats = 0;
+
+        //mostrar_caixa
+        var caixa_xifres = document.getElementById("caixa_xifres");
+        var caixa_lletres = document.getElementById("caixa_lletres");
+        caixa_xifres.style.display = "block";
+        caixa_lletres.style.display = "none";
+
+        //habilitar generar nombres
+        document.getElementById("btn_generar_num").classList.remove("siimple-btn--disabled");
+
+        //borrar nombres generats previament
+        document.getElementById("num_1").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("num_2").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("num_3").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("num_4").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("num_5").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("num_6").innerHTML = "&nbsp;&nbsp;";
+
+        //deshabilitar nombre objectiu
+        document.getElementById("btn_generar_num_objectiu").classList.add("siimple-btn--disabled");
+
+        //borrar nombre objectiu previ
+        document.getElementById("num_objectiu").innerHTML = "&nbsp;&nbsp;";
+      }
+
+      function genera_nou_num(){
+        var num_aleatori = obtenirNum();
+        if(num_generats == 0){
+          num_generats++;
+          document.getElementById("num_1").innerHTML = num_aleatori;
+        } else if(num_generats == 1){
+          num_generats++;
+          document.getElementById("num_2").innerHTML = num_aleatori;
+        } else if(num_generats == 2){
+          num_generats++;
+          document.getElementById("num_3").innerHTML = num_aleatori;
+        } else if(num_generats == 3){
+          num_generats++;
+          document.getElementById("num_4").innerHTML = num_aleatori;
+        } else if(num_generats == 4){
+          num_generats++;
+          document.getElementById("num_5").innerHTML = num_aleatori;
+        } else if(num_generats == 5){
+          num_generats++;
+          document.getElementById("num_6").innerHTML = num_aleatori;
+          document.getElementById("btn_generar_num").classList.add("siimple-btn--disabled");
+          document.getElementById("btn_generar_num_objectiu").classList.remove("siimple-btn--disabled");
+        }
+      }
+
+      function genera_nou_num_objectiu(){
+        document.getElementById("btn_generar_num_objectiu").classList.add("siimple-btn--disabled");
+        document.getElementById("num_objectiu").innerHTML = randomNumber(101,999);
+      }
+
+      function mostra_lletres(){
+
+        num_lletres = 0;
+        var caixa_xifres = document.getElementById("caixa_xifres");
+        var caixa_lletres = document.getElementById("caixa_lletres");
+        caixa_lletres.style.display = "block";
+        caixa_xifres.style.display = "none";
+
+        document.getElementById("btn_generar_vocal").classList.remove("siimple-btn--disabled");
+        document.getElementById("btn_generar_consonant").classList.remove("siimple-btn--disabled");
+
+        document.getElementById("lletra_1").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_2").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_3").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_4").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_5").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_6").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_7").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_8").innerHTML = "&nbsp;&nbsp;";
+        document.getElementById("lletra_9").innerHTML = "&nbsp;&nbsp;";
+      }
+
+      function randomNumber(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function obtenirNum(){
+        var num_aleatori = randomNumber(0,llista_nums.length -1);
+        return llista_nums[num_aleatori];
+      }
+
+      function obtenir_vocal(){
+        var num_aleatori = randomNumber(0,4);
+        var lletra = llista_vocals[num_aleatori];
+        generar_lletra(lletra);
+
+      }
+
+      function obtenir_consonant(){
+        var num_aleatori = randomNumber(0,llista_consonants.length -1);
+        var lletra = llista_consonants[num_aleatori];
+        generar_lletra(lletra);
+      }
+
+      function generar_lletra(lletra){
+        if(num_lletres == 0){
+          num_lletres++;
+          document.getElementById("lletra_1").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 1){
+          num_lletres++;
+          document.getElementById("lletra_2").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 2){
+          num_lletres++;
+          document.getElementById("lletra_3").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 3){
+          num_lletres++;
+          document.getElementById("lletra_4").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 4){
+          num_lletres++;
+          document.getElementById("lletra_5").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 5){
+          num_lletres++;
+          document.getElementById("lletra_6").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 6){
+          num_lletres++;
+          document.getElementById("lletra_7").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 7){
+          num_lletres++;
+          document.getElementById("lletra_8").innerHTML = lletra.toUpperCase();
+        } else if(num_lletres == 8){
+          num_lletres++;
+          document.getElementById("lletra_9").innerHTML = lletra;
+          document.getElementById("btn_generar_vocal").classList.add("siimple-btn--disabled");
+          document.getElementById("btn_generar_consonant").classList.add("siimple-btn--disabled");
+        }
+      }
+
+
+  </script>
+</head>
+<body>
+  <div class="siimple-navbar siimple-navbar--extra-large siimple-navbar--dark">
+    <a class="siimple-navbar-title" href="#">Xifres i Lletres</a>
+    <a class="siimple-navbar-item" href="#">Inici</a>
+    <a class="siimple-navbar-item" href="#">Info</a>
+  </div>
+  <!--<<div class="siimple-jumbotron siimple-jumbotron--extra-large siimple-jumbotron--light">
+    <div class="siimple-jumbotron-title">Xifres i Lletres!</div>
+    div class="siimple-jumbotron-detail">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat.
+  </div>
+</div>-->
+<div class="siimple-content siimple-content--extra-large">
+  <div class="siimple-grid">
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--6 siimple-grid-col--sm-12">
+        <div class="siimple-h2">XIFRES</div>
+        <div class="siimple-paragraph siimple--text-justify">
+          L'objectiu és obtenir, en 45 segons, un nombre enter natural (entre 101 i 999)
+          amb les operacions aritmètiques bàsiques (+,−,×,÷) aplicades a sis números
+          triats a l'atzar (de l'1 al 10, 25, 50, 75 i 100). No és obligat usar
+          tots els nombres, però no se'n pot repetir cap. Guanya la prova el jugador
+          que aconsegueix la xifra exacta. Si cap jugador aconsegueix la xifra,
+          guanya el jugador que més s'aproxima. En cas d'empat, s'adjudiquen els
+          punts per torns.
+        </div>
+        <div onclick="mostra_xifres()" class="siimple-btn siimple-btn--primary siimple-btn--fluid"
+         style="margin-bottom:15px;">JUGAR XIFRES</div>
+      </div>
+      <div class="siimple-grid-col siimple-grid-col--6 siimple-grid-col--sm-12">
+        <div class="siimple-h2">LLETRES</div>
+        <div class="siimple-paragraph siimple--text-justify">
+          Els concursants demanen, alternativament, vocal o consonant, fins a un total de nou
+          lletres, amb les que han de formar la paraula més llarga possible sense usar cap lletra
+          més d'una vegada.
+           No són vàlids els plurals, ni les formes personals del verb. Sí que són vàlids els femenins
+           i les formes no personals (infinitiu, participi i gerundi) dels verbs. Guanya el concursant
+           que aconsegueix la paraula més llarga. En cas d'empat, guanya el concursant que té el torn,
+            sempre que la paraula declarada sigui vàlida.
+        </div>
+        <div onclick="mostra_lletres()"  class="siimple-btn siimple-btn--primary simple-btn-big siimple-btn--fluid"
+        style="margin-bottom:15px;">JUGAR LLETRES</div>
+      </div>
+    </div>
+  </div>
+  <div class="siimple-rule"></div>
+  <!-- XIFRES -->
+  <div id="caixa_xifres" class="siimple-card" style="display:none;">
+    <div class="siimple-card-header " align="center">
+        <div class="siimple-h3 siimple--mb-0">XIFRES</div>
+    </div>
+    <div class="siimple-card-body">
+        <div onclick="genera_nou_num()" id="btn_generar_num" class="siimple-btn siimple-btn--primary siimple-btn--big siimple-btn--disabled">Generar xifres</div>
+        <div id="num_1" class="siimple-btn siimple-btn--navy siimple-btn--big">5</div>
+        <div id="num_2" class="siimple-btn siimple-btn--navy siimple-btn--big">5</div>
+        <div id="num_3" class="siimple-btn siimple-btn--navy siimple-btn--big">&nbsp;</div>
+        <div id="num_4" class="siimple-btn siimple-btn--navy siimple-btn--big">&nbsp;</div>
+        <div id="num_5" class="siimple-btn siimple-btn--navy siimple-btn--big">5</div>
+        <div id="num_6" class="siimple-btn siimple-btn--navy siimple-btn--big">&nbsp;</div>
+    </div>
+    <div class="siimple-card-body">
+      <div onclick="genera_nou_num_objectiu()" id="btn_generar_num_objectiu" class="siimple-btn siimple-btn--primary siimple-btn--big">Nombre objectiu</div>
+      <div id="num_objectiu" class="siimple-btn siimple-btn--red siimple-btn--big">245</div>
+    </div>
+    <div class="siimple-card-footer" align="right">
+      <div onclick="mostra_xifres()" class="siimple-btn siimple-btn--teal">
+          Jugar de nou
+        </div>
+    </div>
+</div>
+<!-- FI XIFRES -->
+<!-- LLETRES -->
+<div id="caixa_lletres" class="siimple-card" style="display:none;">
+  <div class="siimple-card-header " align="center">
+      <div class="siimple-h3 siimple--mb-0">LLETRES</div>
+  </div>
+  <div class="siimple-card-body" align="center">
+    <div class="siimple-grid-row">
+        <div class="siimple-grid-col siimple-grid-col--6">
+            <div onclick="obtenir_vocal()" id="btn_generar_vocal" class="siimple-btn siimple-btn--primary siimple-btn--big siimple-btn--fluid siimple-btn--disabled">VOCAL</div>
+        </div>
+        <div class="siimple-grid-col siimple-grid-col--6">
+            <div onclick="obtenir_consonant()" id="btn_generar_consonant" class="siimple-btn siimple-btn--primary siimple-btn--big  siimple-btn--fluid siimple-btn--disabled">CONSONANT</div>
+        </div>
+    </div>
+
+
+  </div>
+  <div class="siimple-card-body" align="center">
+    <div id="lletra_1" class="siimple-btn siimple-btn--navy siimple-btn--big">A</div>
+    <div id="lletra_2" class="siimple-btn siimple-btn--navy siimple-btn--big">C</div>
+    <div id="lletra_3" class="siimple-btn siimple-btn--navy siimple-btn--big">D</div>
+    <div id="lletra_4" class="siimple-btn siimple-btn--navy siimple-btn--big">R</div>
+    <div id="lletra_5" class="siimple-btn siimple-btn--navy siimple-btn--big">E</div>
+    <div id="lletra_6" class="siimple-btn siimple-btn--navy siimple-btn--big">A</div>
+    <div id="lletra_7" class="siimple-btn siimple-btn--navy siimple-btn--big">S</div>
+    <div id="lletra_8" class="siimple-btn siimple-btn--navy siimple-btn--big">L</div>
+    <div id="lletra_9" class="siimple-btn siimple-btn--navy siimple-btn--big">T</div>
+  </div>
+  <div class="siimple-card-footer" align="right">
+    <div onclick="mostra_lletres()" class="siimple-btn siimple-btn--teal">
+        Jugar de nou
+      </div>
+  </div>
+</div>
+<!-- FI LLETRES -->
+  <div class="siimple-rule"></div>
+</div>
+<div class="siimple-footer siimple-footer--extra-large">
+  Enjoy it!
+</div>
+
+
+</body></html>
